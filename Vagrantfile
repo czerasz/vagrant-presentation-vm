@@ -72,4 +72,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Enable provisioning with bash shell script
   config.vm.provision "shell", path: "provisioners/shell/init.sh"
+
+  # Enable provisioning with Puppet stand alone.  Puppet manifests
+  # are contained in a directory path relative to this Vagrantfile.
+  # You will need to create the manifests directory and a manifest in
+  # the file base.pp in the manifests_path directory.
+  config.vm.host_name = "webserver.local.vm"
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = "provisioners/puppet/manifests"
+    puppet.module_path    = "provisioners/puppet/modules"
+    puppet.manifest_file  = "site.pp"
+  end
 end
