@@ -69,4 +69,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   # View the documentation for the provider you're using for more
   # information on available options.
+
+  # Enable provisioning with bash shell script
+  config.vm.provision "shell", path: "provisioners/shell/init.sh"
 end
