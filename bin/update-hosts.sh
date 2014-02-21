@@ -17,3 +17,4 @@ update_etc_hosts () {
 } 
 
 update_etc_hosts "192.168.33.10 webserver.local.vm"
+update_etc_hosts "192.168.33.20 dbserver.local.vm"

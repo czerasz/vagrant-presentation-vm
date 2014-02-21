@@ -19,3 +19,6 @@
 [submodule "provisioners/puppet/modules/concat"]
 	path = provisioners/puppet/modules/concat
 	url = git@github.com:puppetlabs/puppetlabs-concat.git
+[submodule "provisioners/puppet/modules/mongodb"]
+	path = provisioners/puppet/modules/mongodb
+	url = git@github.com:puppetlabs/puppetlabs-mongodb.git

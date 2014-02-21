@@ -22,15 +22,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.box_download_checksum = 1234
   # config.vm.box_download_checksum_type = "md5" | "sha1" | "sha256"
 
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network :forwarded_port, guest: 80, host: 8080
-
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  config.vm.network :private_network, ip: "192.168.33.10"
-
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
@@ -58,7 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # vb.customize ["modifyvm", :id, "--rtcuseutc", "on"]
 
     # Specify the name visible in the VirtualBox GUI
-    vb.customize ["modifyvm", :id, "--name", "my-first-devbox"]
+    # vb.customize ["modifyvm", :id, "--name", "my-first-devbox"]
 
     # 
     vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
@@ -75,12 +66,32 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
-  # You will need to create the manifests directory and a manifest in
-  # the file base.pp in the manifests_path directory.
-  config.vm.host_name = "webserver.local.vm"
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "provisioners/puppet/manifests"
     puppet.module_path    = "provisioners/puppet/modules"
     puppet.manifest_file  = "site.pp"
+  end
+
+  # Configure webserver
+  config.vm.define "webserver", primary: true do |webserver_config|
+    webserver_config.vm.host_name = "webserver.local.vm"
+
+    # Create a forwarded port mapping which allows access to a specific port
+    # within the machine from a port on the host machine. In the example below,
+    # accessing "localhost:8080" will access port 80 on the guest machine.
+    webserver_config.vm.network :forwarded_port, guest: 80, host: 8080
+
+    # Create a private network, which allows host-only access to the machine
+    # using a specific IP.
+    webserver_config.vm.network :private_network, ip: "192.168.33.10"
+  end
+
+  # Configure dbserver
+  config.vm.define "dbserver" do |webserver_config|
+    webserver_config.vm.host_name = "dbserver.local.vm"
+
+    # Create a private network, which allows host-only access to the machine
+    # using a specific IP.
+    webserver_config.vm.network :private_network, ip: "192.168.33.20"
   end
 end
