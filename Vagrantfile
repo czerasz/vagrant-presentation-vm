@@ -13,11 +13,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu-12.10-x64"
+  config.vm.box = "ubuntu-12.04-precise-64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://24-hetzner.berlinonline.de/boxes/ubuntu-12.10-x64.box"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   # Download security settings
   # config.vm.box_download_checksum = 1234
   # config.vm.box_download_checksum_type = "md5" | "sha1" | "sha256"
@@ -56,9 +56,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # # Use UTC clock instead of host clock, see https://github.com/mitchellh/vagrant/issues/912
     # vb.customize ["modifyvm", :id, "--rtcuseutc", "on"]
-
-    # Specify the name visible in the VirtualBox GUI
-    vb.customize ["modifyvm", :id, "--name", "my-first-devbox"]
 
     # 
     vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
