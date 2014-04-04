@@ -7,3 +7,15 @@
 [submodule "provisioners/puppet/modules/vim"]
 	path = provisioners/puppet/modules/vim
 	url = git@github.com:saz/puppet-vim.git
+[submodule "provisioners/puppet/modules/docker"]
+	path = provisioners/puppet/modules/docker
+	url = git@github.com:garethr/garethr-docker.git
+[submodule "provisioners/puppet/modules/epel"]
+	path = provisioners/puppet/modules/epel
+	url = git@github.com:stahnma/puppet-module-epel.git
+[submodule "provisioners/puppet/modules/apt"]
+	path = provisioners/puppet/modules/apt
+	url = git@github.com:puppetlabs/puppetlabs-apt.git
+[submodule "provisioners/puppet/modules/stdlib"]
+	path = provisioners/puppet/modules/stdlib
+	url = git@github.com:puppetlabs/puppetlabs-stdlib.git
